@@ -13,15 +13,31 @@
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
         }
 
-        body {
+        html, body {
+            min-height: 100vh;
             background: #ffffff;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px 16px;
             color: #111;
             line-height: 1.5;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 16px;
             -webkit-font-smoothing: antialiased;
             -webkit-tap-highlight-color: transparent;
+        }
+
+        .page-wrapper {
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
 
         h1, h2, h3 {
@@ -34,13 +50,14 @@
             color: inherit;
         }
 
+        /* HEADER */
         header {
             background: #ffffff;
             border: 1px solid #e5e5e5;
-            border-radius: 32px;
-            padding: 32px 24px 28px;
-            margin-bottom: 28px;
+            border-radius: 28px;
+            padding: 28px 20px 24px;
             box-shadow: 0 4px 18px rgba(0,0,0,0.02);
+            width: 100%;
         }
 
         .header-container {
@@ -51,7 +68,7 @@
         }
 
         .header-title {
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 4px;
@@ -59,59 +76,27 @@
 
         .header-sub {
             color: #777;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 400;
         }
 
-        @media (min-width: 860px) {
-            body {
-                padding: 32px 40px;
-            }
-
-            .main-container {
-                display: flex;
-                gap: 40px;
-                align-items: flex-start;
-            }
-
-            .sidebar {
-                width: 280px;
-                flex-shrink: 0;
-                position: sticky;
-                top: 32px;
-            }
-
-            .content-area {
-                flex: 1;
-                min-width: 0;
-            }
-
-            .navigation-buttons {
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .nav-btn {
-                padding: 14px 20px;
-                font-size: 1rem;
-                border-radius: 16px;
-                text-align: left;
-                background: #fafafa;
-            }
+        /* SIDEBAR / NAVIGATION */
+        .sidebar {
+            width: 100%;
         }
 
         .navigation-buttons {
             display: flex;
             flex-direction: column;
             gap: 8px;
-            margin-bottom: 30px;
+            width: 100%;
         }
 
         .nav-btn {
             background: #f8f8f8;
             border: 1px solid #dddddd;
             border-radius: 16px;
-            padding: 12px 18px;
+            padding: 14px 18px;
             font-weight: 550;
             font-size: 0.95rem;
             text-align: left;
@@ -123,6 +108,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            width: 100%;
         }
 
         .nav-btn:hover {
@@ -152,6 +138,7 @@
             padding-left: 16px;
             margin-top: 4px;
             border-left: 2px solid #ddd;
+            width: 100%;
         }
 
         .sub-menu.open {
@@ -161,7 +148,7 @@
         .sub-btn {
             background: transparent;
             border: none;
-            padding: 8px 14px;
+            padding: 10px 14px;
             font-size: 0.9rem;
             font-weight: 500;
             color: #333;
@@ -183,34 +170,129 @@
             color: #000;
         }
 
+        /* CONTENT AREA - footer only */
         .content-area {
-            min-height: 400px;
+            width: 100%;
+            min-height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         footer {
             text-align: center;
-            padding: 32px 20px 20px;
+            padding: 24px 12px 16px;
             border-top: 1px solid #e2e2e2;
-            margin-top: 25px;
+            margin-top: 12px;
             color: #5a5a5a;
+            width: 100%;
+            font-size: 0.9rem;
         }
 
-        @media (max-width: 600px) {
-            header { padding: 24px 16px; }
-            .header-title { font-size: 1.8rem; }
+        footer p:last-child {
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (min-width: 768px) {
+            body {
+                padding: 32px 40px;
+                justify-content: center;
+            }
+
+            .page-wrapper {
+                max-width: 580px;
+            }
+
+            header {
+                padding: 32px 28px 28px;
+                border-radius: 32px;
+            }
+
+            .header-title {
+                font-size: 2.4rem;
+            }
+
             .nav-btn {
-                padding: 10px 14px;
-                font-size: 0.9rem;
+                padding: 16px 22px;
+                font-size: 1rem;
+                border-radius: 18px;
+            }
+
+            .sub-btn {
+                padding: 10px 18px;
+                font-size: 0.95rem;
             }
         }
 
-        @media (max-width: 860px) {
-            .main-container {
-                flex-direction: column;
+        @media (max-width: 480px) {
+            body {
+                padding: 12px 10px;
             }
-            .sidebar {
-                width: 100%;
-                position: static;
+
+            .page-wrapper {
+                gap: 14px;
+            }
+
+            header {
+                padding: 20px 14px 18px;
+                border-radius: 22px;
+            }
+
+            .header-title {
+                font-size: 1.7rem;
+            }
+
+            .header-sub {
+                font-size: 0.8rem;
+            }
+
+            .nav-btn {
+                padding: 12px 14px;
+                font-size: 0.85rem;
+                border-radius: 14px;
+            }
+
+            .sub-btn {
+                padding: 8px 12px;
+                font-size: 0.82rem;
+            }
+
+            .sub-menu {
+                padding-left: 12px;
+            }
+
+            footer {
+                padding: 18px 8px 12px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            body {
+                padding: 8px 6px;
+            }
+
+            header {
+                padding: 16px 10px 14px;
+                border-radius: 18px;
+            }
+
+            .header-title {
+                font-size: 1.4rem;
+            }
+
+            .nav-btn {
+                padding: 10px 12px;
+                font-size: 0.8rem;
+                border-radius: 12px;
+            }
+
+            .sub-btn {
+                padding: 6px 10px;
+                font-size: 0.78rem;
             }
         }
 
@@ -226,7 +308,7 @@
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 16px;
             backdrop-filter: blur(4px);
             animation: fadeIn 0.3s ease;
         }
@@ -241,9 +323,9 @@
         }
 
         .pdf-overlay-content {
-            width: 95%;
+            width: 96%;
             max-width: 1100px;
-            height: 90vh;
+            height: 92vh;
             background: #ffffff;
             border-radius: 24px;
             overflow: hidden;
@@ -260,7 +342,7 @@
         }
 
         .pdf-overlay-header {
-            padding: 16px 24px;
+            padding: 14px 20px;
             border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
@@ -270,7 +352,7 @@
         }
 
         .pdf-overlay-header h3 {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 600;
             color: #111;
             white-space: nowrap;
@@ -330,37 +412,74 @@
         }
 
         @media (max-width: 600px) {
+            .pdf-overlay {
+                padding: 8px;
+            }
+
             .pdf-overlay-content {
                 width: 100%;
-                height: 100vh;
-                border-radius: 0;
+                height: 98vh;
+                border-radius: 16px;
                 max-width: 100%;
             }
-            .pdf-overlay {
-                padding: 0;
+
+            .pdf-overlay-header {
+                padding: 12px 16px;
             }
+
             .pdf-overlay-header h3 {
                 font-size: 1rem;
                 max-width: 70%;
             }
+
             .pdf-overlay-close {
                 font-size: 28px;
             }
+
             .pdf-overlay-body {
                 padding: 8px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .pdf-overlay {
+                padding: 4px;
+            }
+
+            .pdf-overlay-content {
+                border-radius: 12px;
+                height: 99vh;
+            }
+
+            .pdf-overlay-header {
+                padding: 10px 12px;
+            }
+
+            .pdf-overlay-header h3 {
+                font-size: 0.9rem;
+            }
+
+            .pdf-overlay-close {
+                font-size: 24px;
+            }
+
+            .pdf-overlay-body {
+                padding: 4px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <h1 class="header-title">Main Story</h1>
-            <p class="header-sub">Gathur Delano Kafka · Narrative Archive</p>
-        </div>
-    </header>
+    <div class="page-wrapper">
+        <!-- HEADER -->
+        <header>
+            <div class="header-container">
+                <h1 class="header-title">Main Story</h1>
+                <p class="header-sub">Kafka's Universe</p>
+            </div>
+        </header>
 
-    <div class="main-container">
+        <!-- NAVIGATION -->
         <div class="sidebar">
             <div class="navigation-buttons">
                 <!-- The Jackdaw -->
@@ -369,11 +488,11 @@
                     <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </div>
                 <div class="sub-menu" id="sub-jackdaw">
-                    <button class="sub-btn" data-chapter="jackdaw-1" data-title="The Jackdaw - Chapter 1">Chapter 1</button>
-                    <button class="sub-btn" data-chapter="jackdaw-2" data-title="The Jackdaw - Chapter 2">Chapter 2</button>
-                    <button class="sub-btn" data-chapter="jackdaw-3" data-title="The Jackdaw - Chapter 3">Chapter 3</button>
-                    <button class="sub-btn" data-chapter="jackdaw-4" data-title="The Jackdaw - Chapter 4">Chapter 4</button>
-                    <button class="sub-btn" data-chapter="jackdaw-5" data-title="The Jackdaw - Chapter 5">Chapter 5</button>
+                    <button class="sub-btn" data-title="The Jackdaw - Chapter 1">Chapter 1</button>
+                    <button class="sub-btn" data-title="The Jackdaw - Chapter 2">Chapter 2</button>
+                    <button class="sub-btn" data-title="The Jackdaw - Chapter 3">Chapter 3</button>
+                    <button class="sub-btn" data-title="The Jackdaw - Chapter 4">Chapter 4</button>
+                    <button class="sub-btn" data-title="The Jackdaw - Chapter 5">Chapter 5</button>
                 </div>
 
                 <!-- A Language of Threats -->
@@ -382,18 +501,18 @@
                     <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </div>
                 <div class="sub-menu" id="sub-threats">
-                    <button class="sub-btn" data-chapter="threats-1" data-title="ALOT - Chapter 1" data-pdf="https://drive.google.com/file/d/1cVY89y0fWVxdY155LNuMTwwuSFHOA_mG/preview">Chapter 1</button>
-                    <button class="sub-btn" data-chapter="threats-2" data-title="ALOT - Chapter 2">Chapter 2</button>
-                    <button class="sub-btn" data-chapter="threats-3" data-title="ALOT - Chapter 3">Chapter 3</button>
+                    <button class="sub-btn" data-title="ALOT - Chapter 1" data-pdf="https://drive.google.com/file/d/1cVY89y0fWVxdY155LNuMTwwuSFHOA_mG/preview">Chapter 1</button>
+                    <button class="sub-btn" data-title="ALOT - Chapter 2">Chapter 2</button>
+                    <button class="sub-btn" data-title="ALOT - Chapter 3">Chapter 3</button>
                 </div>
             </div>
         </div>
 
+        <!-- CONTENT AREA (footer only) -->
         <div class="content-area">
-            <!-- Kosong — semua konten via overlay -->
             <footer>
                 <p>© 2026 Gathur Delano Kafka.</p>
-                <p style="margin-top:10px; font-size:14px; color:#888;">Written by Arde</p>
+                <p>Written by Arde</p>
             </footer>
         </div>
     </div>
@@ -456,7 +575,6 @@
                     overlayIframe.style.display = 'block';
                     overlayIframe.src = pdfUrl;
                 } else {
-                    // Coming soon
                     overlayPlaceholder.style.display = 'flex';
                     overlayPlaceholder.innerHTML = `
                         <i class="fas fa-book-open" style="font-size: 40px; color: #ccc; margin-right: 14px;"></i>
@@ -482,24 +600,20 @@
                 `;
             }
 
-            // Tombol close
             closeBtn.addEventListener('click', closePdf);
 
-            // Klik di luar konten (background) untuk close
             overlay.addEventListener('click', function(e) {
                 if (e.target === overlay) {
                     closePdf();
                 }
             });
 
-            // Tombol ESC
             window.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && overlay.classList.contains('active')) {
                     closePdf();
                 }
             });
 
-            // ===== SUB BUTTON CLICK =====
             const subBtns = document.querySelectorAll('.sub-btn');
 
             subBtns.forEach(btn => {
@@ -510,7 +624,6 @@
 
                     openPdf(title, pdf);
 
-                    // Highlight active
                     subBtns.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                 });
@@ -518,4 +631,4 @@
         })();
     </script>
 </body>
-  </html>
+                        </html>
