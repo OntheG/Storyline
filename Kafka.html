@@ -327,7 +327,7 @@
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 30px 20px;
+            padding: 16px 12px;
             backdrop-filter: blur(4px);
             animation: fadeIn 0.3s ease;
         }
@@ -342,12 +342,12 @@
         }
 
         .pdf-overlay-content {
-            width: 92%;
+            width: 96%;
             max-width: 900px;
-            height: 80vh;
+            height: 90vh;
             max-height: 750px;
             background: #ffffff;
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
             display: flex;
@@ -363,7 +363,7 @@
         }
 
         .pdf-overlay-header {
-            padding: 14px 20px;
+            padding: 10px 14px;
             border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
@@ -371,26 +371,27 @@
             background: #fafafa;
             flex-shrink: 0;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
+            min-height: 44px;
         }
 
         .pdf-overlay-header h3 {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             color: #111;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 60%;
+            max-width: 50%;
         }
 
         .pdf-overlay-close {
             background: none;
             border: none;
-            font-size: 28px;
+            font-size: 24px;
             color: #333;
             cursor: pointer;
-            padding: 0 6px;
+            padding: 0 4px;
             transition: all 0.2s;
             line-height: 1;
         }
@@ -403,19 +404,19 @@
         /* Mode toggle */
         .pdf-mode-toggle {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             background: #f0f0f0;
             border-radius: 30px;
-            padding: 3px;
+            padding: 2px;
             flex-shrink: 0;
         }
 
         .pdf-mode-toggle button {
             background: transparent;
             border: none;
-            padding: 4px 14px;
+            padding: 3px 10px;
             border-radius: 30px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
             cursor: pointer;
             color: #888;
@@ -434,7 +435,7 @@
         .pdf-overlay-body {
             flex: 1;
             background: #f1f3f5;
-            padding: 12px;
+            padding: 6px;
             overflow: hidden;
             min-height: 0;
             display: flex;
@@ -452,8 +453,8 @@
             align-items: center;
             justify-content: flex-start;
             background: #f1f3f5;
-            border-radius: 12px;
-            padding: 8px;
+            border-radius: 8px;
+            padding: 4px;
             position: relative;
             overflow: hidden;
         }
@@ -472,8 +473,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
-            padding: 8px 0;
+            gap: 8px;
+            padding: 4px 0;
             margin-top: 0;
         }
 
@@ -514,8 +515,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
-            padding: 10px 0 4px 0;
+            gap: 12px;
+            padding: 6px 0 2px 0;
             flex-shrink: 0;
             width: 100%;
             flex-wrap: wrap;
@@ -525,13 +526,13 @@
             background: #111;
             color: white;
             border: none;
-            padding: 6px 16px;
+            padding: 5px 14px;
             border-radius: 30px;
             font-weight: 600;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             transition: all 0.2s;
-            min-width: 70px;
+            min-width: 60px;
         }
 
         .pdf-controls button:hover {
@@ -548,8 +549,8 @@
         .pdf-controls .page-info {
             font-weight: 600;
             color: #333;
-            font-size: 0.9rem;
-            min-width: 80px;
+            font-size: 0.85rem;
+            min-width: 70px;
             text-align: center;
         }
 
@@ -560,15 +561,15 @@
             align-items: center;
             justify-content: center;
             color: #999;
-            font-size: 1.1rem;
+            font-size: 1rem;
             background: #fafafa;
-            border-radius: 12px;
+            border-radius: 8px;
             flex-direction: column;
         }
 
         .pdf-placeholder-text i {
-            font-size: 40px;
-            margin-bottom: 12px;
+            font-size: 32px;
+            margin-bottom: 8px;
             color: #ccc;
         }
 
@@ -578,172 +579,238 @@
         }
 
         .pdf-placeholder-text .sub-text {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #999;
             margin-top: 4px;
         }
 
-        /* ===== PDF OVERLAY RESPONSIVE ===== */
+        /* ===== PDF OVERLAY RESPONSIVE - DIPERKECIL ===== */
         @media (max-width: 768px) {
             .pdf-overlay {
-                padding: 16px 12px;
+                padding: 8px 6px;
             }
 
             .pdf-overlay-content {
-                width: 98%;
-                height: 88vh;
+                width: 100%;
+                height: 95vh;
                 max-height: none;
-                border-radius: 16px;
+                border-radius: 12px;
             }
 
             .pdf-overlay-header {
-                padding: 12px 14px;
+                padding: 8px 10px;
+                min-height: 38px;
             }
 
             .pdf-overlay-header h3 {
-                font-size: 0.95rem;
-                max-width: 55%;
+                font-size: 0.85rem;
+                max-width: 45%;
             }
 
             .pdf-overlay-close {
-                font-size: 24px;
+                font-size: 20px;
+                padding: 0 2px;
             }
 
             .pdf-overlay-body {
-                padding: 8px;
+                padding: 4px;
+            }
+
+            .pdf-viewer-wrapper {
+                padding: 2px;
+                border-radius: 6px;
             }
 
             .pdf-controls {
-                gap: 10px;
-                padding: 8px 0 4px 0;
+                gap: 8px;
+                padding: 4px 0 2px 0;
             }
 
             .pdf-controls button {
-                padding: 5px 12px;
-                font-size: 0.8rem;
-                min-width: 60px;
+                padding: 4px 10px;
+                font-size: 0.7rem;
+                min-width: 50px;
             }
 
             .pdf-controls .page-info {
-                font-size: 0.85rem;
-                min-width: 60px;
+                font-size: 0.75rem;
+                min-width: 55px;
             }
 
             .pdf-mode-toggle button {
-                padding: 3px 10px;
-                font-size: 0.7rem;
+                padding: 2px 8px;
+                font-size: 0.6rem;
+            }
+
+            .pdf-placeholder-text {
+                font-size: 0.85rem;
+            }
+
+            .pdf-placeholder-text i {
+                font-size: 28px;
             }
         }
 
         @media (max-width: 480px) {
             .pdf-overlay {
-                padding: 10px 6px;
+                padding: 4px 3px;
             }
 
             .pdf-overlay-content {
-                width: 100%;
-                height: 92vh;
-                border-radius: 12px;
+                height: 98vh;
+                border-radius: 8px;
             }
 
             .pdf-overlay-header {
-                padding: 10px 12px;
+                padding: 6px 8px;
+                min-height: 34px;
             }
 
             .pdf-overlay-header h3 {
-                font-size: 0.85rem;
-                max-width: 50%;
+                font-size: 0.75rem;
+                max-width: 40%;
             }
 
             .pdf-overlay-close {
-                font-size: 22px;
+                font-size: 18px;
             }
 
             .pdf-overlay-body {
-                padding: 6px;
+                padding: 3px;
+            }
+
+            .pdf-viewer-wrapper {
+                padding: 1px;
+                border-radius: 4px;
             }
 
             .pdf-controls {
-                gap: 6px;
-                padding: 6px 0 2px 0;
+                gap: 5px;
+                padding: 3px 0 1px 0;
             }
 
             .pdf-controls button {
-                padding: 4px 10px;
-                font-size: 0.75rem;
-                min-width: 50px;
+                padding: 3px 8px;
+                font-size: 0.65rem;
+                min-width: 42px;
             }
 
             .pdf-controls .page-info {
-                font-size: 0.8rem;
-                min-width: 50px;
+                font-size: 0.7rem;
+                min-width: 45px;
             }
 
             .pdf-mode-toggle button {
-                padding: 2px 8px;
-                font-size: 0.65rem;
+                padding: 1px 6px;
+                font-size: 0.55rem;
+            }
+
+            .pdf-placeholder-text {
+                font-size: 0.75rem;
+            }
+
+            .pdf-placeholder-text i {
+                font-size: 24px;
+                margin-bottom: 6px;
+            }
+
+            .pdf-placeholder-text .sub-text {
+                font-size: 0.7rem;
             }
         }
 
         @media (max-width: 380px) {
             .pdf-overlay {
-                padding: 6px 4px;
+                padding: 2px 2px;
             }
 
             .pdf-overlay-content {
-                height: 95vh;
-                border-radius: 10px;
+                height: 99vh;
+                border-radius: 6px;
             }
 
             .pdf-overlay-header {
-                padding: 8px 10px;
+                padding: 4px 6px;
+                min-height: 30px;
             }
 
             .pdf-overlay-header h3 {
-                font-size: 0.75rem;
+                font-size: 0.65rem;
+                max-width: 35%;
             }
 
             .pdf-overlay-close {
-                font-size: 20px;
+                font-size: 16px;
             }
 
             .pdf-overlay-body {
-                padding: 4px;
+                padding: 2px;
+            }
+
+            .pdf-viewer-wrapper {
+                padding: 1px;
+                border-radius: 3px;
+            }
+
+            .pdf-controls {
+                gap: 4px;
+                padding: 2px 0 1px 0;
+            }
+
+            .pdf-controls button {
+                padding: 2px 6px;
+                font-size: 0.6rem;
+                min-width: 36px;
+            }
+
+            .pdf-controls .page-info {
+                font-size: 0.65rem;
+                min-width: 40px;
+            }
+
+            .pdf-placeholder-text {
+                font-size: 0.7rem;
+            }
+
+            .pdf-placeholder-text i {
+                font-size: 20px;
+                margin-bottom: 4px;
             }
         }
 
         /* Landscape phone */
         @media (max-height: 500px) and (orientation: landscape) {
             .pdf-overlay {
-                padding: 10px 16px;
+                padding: 6px 10px;
             }
 
             .pdf-overlay-content {
-                height: 90vh;
-                max-height: 500px;
-                border-radius: 14px;
+                height: 92vh;
+                max-height: 450px;
+                border-radius: 10px;
             }
 
             .pdf-overlay-header {
-                padding: 8px 14px;
+                padding: 6px 10px;
+                min-height: 32px;
             }
 
             .pdf-overlay-header h3 {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
 
             .pdf-overlay-body {
-                padding: 6px;
+                padding: 4px;
             }
 
             .pdf-controls {
-                padding: 4px 0 2px 0;
+                padding: 3px 0 1px 0;
             }
 
             .pdf-controls button {
-                padding: 3px 10px;
-                font-size: 0.7rem;
-                min-width: 50px;
+                padding: 3px 8px;
+                font-size: 0.65rem;
+                min-width: 44px;
             }
         }
     </style>
@@ -780,7 +847,7 @@
                     <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </div>
                 <div class="sub-menu" id="sub-threats">
-                    <button class="sub-btn" data-title="ALOT - Chapter 1" data-pdf="1ALOT.pdf" data-status="Ready">Chapter 1</button>
+                    <button class="sub-btn active" data-title="ALOT - Chapter 1" data-pdf="1ALOT.pdf" data-status="Ready">Chapter 1</button>
                     <button class="sub-btn" data-title="ALOT - Chapter 2" data-pdf="2ALOT.pdf" data-status="On Progress">Chapter 2</button>
                     <button class="sub-btn" data-title="ALOT - Chapter 3" data-pdf="3ALOT.pdf" data-status="On Progress">Chapter 3</button>
                     <button class="sub-btn" data-title="ALOT - Chapter 4" data-pdf="4ALOT.pdf" data-status="On Progress">Chapter 4</button>
@@ -833,7 +900,7 @@
                         <canvas id="pdfCanvas"></canvas>
                     </div>
                     <!-- Scroll mode container -->
-                    <div class="pdf-page-container" id="pdfPageContainer" style="display:none; width:100%; max-width:600px; flex-direction:column; align-items:center; gap:12px; padding:8px 0;"></div>
+                    <div class="pdf-page-container" id="pdfPageContainer" style="display:none; width:100%; max-width:600px; flex-direction:column; align-items:center; gap:8px; padding:4px 0;"></div>
                     
                     <div class="pdf-controls" id="pdfControls" style="display:none;">
                         <button id="prevPageBtn"><i class="fas fa-chevron-left"></i> Prev</button>
@@ -1014,7 +1081,7 @@
                 controls.style.display = 'none';
                 placeholder.style.display = 'flex';
                 placeholder.innerHTML = `
-                    <i class="fas fa-spinner fa-spin" style="font-size: 40px; color: #666; margin-bottom: 12px;"></i>
+                    <i class="fas fa-spinner fa-spin" style="font-size: 32px; color: #666; margin-bottom: 8px;"></i>
                     <span>Loading PDF...</span>
                 `;
                 pageContainer.innerHTML = '';
@@ -1046,7 +1113,7 @@
                     console.error('Error loading PDF:', error);
                     placeholder.style.display = 'flex';
                     placeholder.innerHTML = `
-                        <i class="fas fa-exclamation-triangle" style="font-size: 40px; color: #e74c3c; margin-bottom: 12px;"></i>
+                        <i class="fas fa-exclamation-triangle" style="font-size: 32px; color: #e74c3c; margin-bottom: 8px;"></i>
                         <span>Error loading PDF. Make sure the file exists.</span>
                     `;
                     canvas.style.display = 'none';
@@ -1060,7 +1127,7 @@
                     overlayTitle.textContent = title || 'Coming Soon';
                     placeholder.style.display = 'flex';
                     placeholder.innerHTML = `
-                        <i class="fas fa-clock" style="font-size: 40px; color: #e67e22; margin-bottom: 12px;"></i>
+                        <i class="fas fa-clock" style="font-size: 32px; color: #e67e22; margin-bottom: 8px;"></i>
                         <span class="status-text">${status}</span>
                         <span class="sub-text">${title}</span>
                     `;
@@ -1077,7 +1144,7 @@
                     overlayTitle.textContent = title || 'Coming Soon';
                     placeholder.style.display = 'flex';
                     placeholder.innerHTML = `
-                        <i class="fas fa-book-open" style="font-size: 40px; color: #ccc; margin-bottom: 12px;"></i>
+                        <i class="fas fa-book-open" style="font-size: 32px; color: #ccc; margin-bottom: 8px;"></i>
                         <span>Coming Soon</span>
                     `;
                     canvas.style.display = 'none';
@@ -1100,7 +1167,7 @@
                 controls.style.display = 'none';
                 placeholder.style.display = 'flex';
                 placeholder.innerHTML = `
-                    <i class="fas fa-file-pdf" style="font-size: 40px; color: #ccc; margin-bottom: 12px;"></i>
+                    <i class="fas fa-file-pdf" style="font-size: 32px; color: #ccc; margin-bottom: 8px;"></i>
                     <span>Loading PDF...</span>
                 `;
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -1179,4 +1246,4 @@
         })();
     </script>
 </body>
-                        </html>
+    </html>
