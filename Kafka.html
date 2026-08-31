@@ -327,7 +327,7 @@
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 16px 12px;
+            padding: 20px 16px;
             backdrop-filter: blur(4px);
             animation: fadeIn 0.3s ease;
         }
@@ -344,7 +344,7 @@
         .pdf-overlay-content {
             width: 96%;
             max-width: 900px;
-            height: 90vh;
+            height: 88vh;
             max-height: 750px;
             background: #ffffff;
             border-radius: 16px;
@@ -584,17 +584,17 @@
             margin-top: 4px;
         }
 
-        /* ===== PDF OVERLAY RESPONSIVE - DIPERKECIL & HILANGIN ABU-ABU ===== */
+        /* ===== PDF OVERLAY RESPONSIVE ===== */
         @media (max-width: 768px) {
             .pdf-overlay {
-                padding: 0 !important;
+                padding: 16px 12px !important;
             }
 
             .pdf-overlay-content {
                 width: 100%;
-                height: 100vh;
+                height: 88vh !important;
                 max-height: none;
-                border-radius: 0 !important;
+                border-radius: 14px;
             }
 
             .pdf-overlay-header {
@@ -612,27 +612,25 @@
                 padding: 0 2px;
             }
 
-            /* HILANGIN ABU-ABU DI MOBILE */
             .pdf-overlay-body {
-                background: transparent !important;
-                padding: 0 !important;
+                background: #f1f3f5 !important;
+                padding: 4px !important;
             }
 
             .pdf-viewer-wrapper {
-                background: transparent !important;
-                padding: 0 !important;
-                border-radius: 0 !important;
+                background: #f1f3f5 !important;
+                padding: 2px !important;
+                border-radius: 6px !important;
             }
 
             .pdf-viewer-wrapper.flip-mode .pdf-canvas-container canvas {
-                border-radius: 0 !important;
+                border-radius: 2px !important;
             }
 
             .pdf-controls {
+                display: flex !important;
                 gap: 8px;
                 padding: 6px 0 4px 0;
-                background: rgba(255,255,255,0.9);
-                backdrop-filter: blur(4px);
             }
 
             .pdf-controls button {
@@ -653,7 +651,7 @@
 
             .pdf-placeholder-text {
                 font-size: 0.85rem;
-                background: transparent !important;
+                background: #fafafa !important;
             }
 
             .pdf-placeholder-text i {
@@ -661,13 +659,18 @@
             }
 
             .pdf-viewer-wrapper.scroll-mode .pdf-page-container canvas {
-                border-radius: 0 !important;
+                border-radius: 2px !important;
             }
         }
 
         @media (max-width: 480px) {
+            .pdf-overlay {
+                padding: 12px 8px !important;
+            }
+
             .pdf-overlay-content {
-                height: 100vh;
+                height: 86vh !important;
+                border-radius: 12px;
             }
 
             .pdf-overlay-header {
@@ -682,6 +685,15 @@
 
             .pdf-overlay-close {
                 font-size: 18px;
+            }
+
+            .pdf-overlay-body {
+                padding: 3px !important;
+            }
+
+            .pdf-viewer-wrapper {
+                padding: 1px !important;
+                border-radius: 4px !important;
             }
 
             .pdf-controls {
@@ -720,6 +732,15 @@
         }
 
         @media (max-width: 380px) {
+            .pdf-overlay {
+                padding: 8px 4px !important;
+            }
+
+            .pdf-overlay-content {
+                height: 84vh !important;
+                border-radius: 10px;
+            }
+
             .pdf-overlay-header {
                 padding: 4px 6px;
                 min-height: 30px;
@@ -763,13 +784,13 @@
         /* Landscape phone */
         @media (max-height: 500px) and (orientation: landscape) {
             .pdf-overlay {
-                padding: 0 !important;
+                padding: 12px 16px !important;
             }
 
             .pdf-overlay-content {
-                height: 100vh;
-                max-height: none;
-                border-radius: 0 !important;
+                height: 85vh !important;
+                max-height: 420px;
+                border-radius: 12px;
             }
 
             .pdf-overlay-header {
@@ -782,11 +803,11 @@
             }
 
             .pdf-overlay-body {
-                padding: 0 !important;
+                padding: 3px !important;
             }
 
             .pdf-viewer-wrapper {
-                padding: 0 !important;
+                padding: 1px !important;
             }
 
             .pdf-controls {
