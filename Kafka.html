@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Main Story - Gathur Delano Kafka</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- PDF.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <style>
         * {
@@ -34,7 +33,7 @@
 
         .page-wrapper {
             width: 100%;
-            max-width: 680px;
+            max-width: 900px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
@@ -42,280 +41,400 @@
             gap: 20px;
         }
 
-        h1, h2, h3 {
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
         /* HEADER */
         header {
             background: #ffffff;
             border: 1px solid #e5e5e5;
             border-radius: 28px;
-            padding: 28px 20px 24px;
+            padding: 24px 20px 20px;
             box-shadow: 0 4px 18px rgba(0,0,0,0.02);
             width: 100%;
-        }
-
-        .header-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             text-align: center;
         }
 
         .header-title {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 4px;
+            letter-spacing: -0.02em;
+            margin-bottom: 2px;
         }
 
         .header-sub {
             color: #777;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 400;
         }
 
-        /* SIDEBAR / NAVIGATION */
-        .sidebar {
+        /* INFO TEXT - BLACK & WHITE ONLY */
+        .info-text {
             width: 100%;
-        }
-
-        .navigation-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            width: 100%;
-        }
-
-        .nav-btn {
-            background: #f8f8f8;
-            border: 1px solid #dddddd;
+            border: 1px solid #e5e5e5;
             border-radius: 16px;
-            padding: 14px 18px;
-            font-weight: 550;
-            font-size: 0.95rem;
-            text-align: left;
-            color: #1a1a1a;
-            transition: all 0.2s;
-            cursor: pointer;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            padding: 18px 20px;
+            background: #ffffff;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: #111;
+        }
+
+        .info-text .label {
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #111;
+            margin-top: 8px;
+        }
+
+        .info-text .label:first-of-type {
+            margin-top: 0;
+        }
+
+        .info-text .content {
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .info-text .content:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-text .main-char {
+            font-weight: 600;
+            color: #111;
+        }
+
+        /* ===== 2 GRID ===== */
+        .stories-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
             width: 100%;
         }
 
-        .nav-btn:hover {
-            background: #222;
-            color: white;
-            border-color: #222;
-            transform: translateY(-2px);
+        .story-card {
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
         }
 
-        .nav-btn:active {
+        .story-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+            border-color: #ccc;
+        }
+
+        .story-card:active {
             transform: scale(0.97);
         }
 
-        .nav-btn .arrow {
-            font-size: 0.8rem;
-            transition: transform 0.25s ease;
-        }
-
-        .nav-btn.open .arrow {
-            transform: rotate(180deg);
-        }
-
-        /* On Going - no dropdown, no hover effect */
-        .nav-btn.ongoing {
-            opacity: 0.5;
-            cursor: default;
-            pointer-events: none;
-            border-style: dashed;
-        }
-
-        .nav-btn.ongoing:hover {
-            background: #f8f8f8;
-            transform: none;
-            color: #1a1a1a;
-        }
-
-        .sub-menu {
-            display: none;
-            flex-direction: column;
-            gap: 4px;
-            padding-left: 16px;
-            margin-top: 4px;
-            border-left: 2px solid #ddd;
+        .story-card .card-image {
             width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
 
-        .sub-menu.open {
+        .story-card .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .story-card:hover .card-image img {
+            transform: scale(1.02);
+        }
+
+        .story-card .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 16px 16px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.65));
+            color: white;
+        }
+
+        .story-card .card-overlay h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 2px;
+        }
+
+        .story-card .card-overlay p {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        .story-card .card-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+            letter-spacing: 0.3px;
+        }
+
+        .story-card .card-badge.chapters {
+            background: rgba(255,255,255,0.9);
+            color: #111;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* ===== CHAPTERS MODAL ===== */
+        .chapters-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            z-index: 9998;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 16px;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .chapters-overlay.active {
             display: flex;
         }
 
-        .sub-btn {
-            background: transparent;
-            border: none;
-            padding: 10px 14px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #333;
-            border-radius: 10px;
-            cursor: pointer;
-            text-align: left;
-            transition: all 0.15s;
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .chapters-modal {
+            background: #ffffff;
+            border-radius: 24px;
+            max-width: 440px;
             width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 28px 24px 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            0% { transform: scale(0.92) translateY(30px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .chapters-modal .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
         }
 
-        .sub-btn:hover {
-            background: #f0f0f0;
+        .chapters-modal .modal-header h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .chapters-modal .modal-close {
+            background: none;
+            border: none;
+            font-size: 26px;
+            color: #999;
+            cursor: pointer;
+            transition: all 0.2s;
+            line-height: 1;
+            padding: 0 4px;
+        }
+
+        .chapters-modal .modal-close:hover {
             color: #000;
+            transform: scale(1.1);
         }
 
-        .sub-btn.active {
-            background: #e8e8e8;
-            font-weight: 600;
-            color: #000;
-        }
-
-        /* CONTENT AREA - footer only */
-        .content-area {
-            width: 100%;
-            min-height: 60px;
+        .chapter-item {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: #f8f8f8;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
         }
 
-        footer {
-            text-align: center;
-            padding: 24px 12px 16px;
-            border-top: 1px solid #e2e2e2;
-            margin-top: 12px;
-            color: #5a5a5a;
-            width: 100%;
-            font-size: 0.9rem;
+        .chapter-item:hover {
+            background: #f0f0f0;
+            border-color: #ddd;
+            transform: translateX(4px);
         }
 
-        footer p:last-child {
-            margin-top: 8px;
-            font-size: 0.8rem;
+        .chapter-item:active {
+            transform: scale(0.97);
+        }
+
+        .chapter-item .chapter-title {
+            font-weight: 500;
+            font-size: 0.92rem;
+            color: #1a1a1a;
+        }
+
+        .chapter-item .chapter-status {
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 3px 12px;
+            border-radius: 30px;
+            background: #e8e8e8;
+            color: #666;
+            flex-shrink: 0;
+            margin-left: 10px;
+        }
+
+        .chapter-item .chapter-status.ready {
+            background: #e8e8e8;
+            color: #111;
+        }
+
+        .chapter-item .chapter-status.revision {
+            background: #e8e8e8;
+            color: #111;
+        }
+
+        .chapter-item .chapter-status.progress {
+            background: #e8e8e8;
+            color: #111;
+        }
+
+        .chapter-item .chapter-status.coming {
+            background: #e8e8e8;
             color: #999;
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (min-width: 768px) {
-            body {
-                padding: 32px 40px;
-                justify-content: center;
+        @media (max-width: 600px) {
+            .stories-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
             }
 
-            .page-wrapper {
-                max-width: 580px;
+            .story-card .card-overlay h3 {
+                font-size: 0.85rem;
             }
 
-            header {
-                padding: 32px 28px 28px;
-                border-radius: 32px;
+            .story-card .card-overlay p {
+                font-size: 0.65rem;
             }
 
-            .header-title {
-                font-size: 2.4rem;
+            .story-card .card-overlay {
+                padding: 14px 12px 12px;
             }
 
-            .nav-btn {
-                padding: 16px 22px;
-                font-size: 1rem;
-                border-radius: 18px;
+            .story-card .card-badge {
+                font-size: 0.55rem;
+                padding: 3px 10px;
+                top: 8px;
+                right: 8px;
             }
 
-            .sub-btn {
-                padding: 10px 18px;
-                font-size: 0.95rem;
+            .chapters-modal {
+                padding: 20px 16px 16px;
+                max-width: 95%;
+            }
+
+            .chapters-modal .modal-header h2 {
+                font-size: 1.1rem;
+            }
+
+            .chapter-item {
+                padding: 10px 12px;
+            }
+
+            .chapter-item .chapter-title {
+                font-size: 0.82rem;
+            }
+
+            .chapter-item .chapter-status {
+                font-size: 0.55rem;
+                padding: 2px 10px;
+            }
+
+            .info-text {
+                padding: 14px 16px;
+                font-size: 0.8rem;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 420px) {
+            .stories-grid {
+                gap: 10px;
+            }
+
+            .story-card .card-overlay h3 {
+                font-size: 0.75rem;
+            }
+
+            .story-card .card-overlay p {
+                font-size: 0.6rem;
+            }
+
+            .story-card .card-overlay {
+                padding: 10px 8px 8px;
+            }
+
             body {
                 padding: 12px 10px;
             }
 
-            .page-wrapper {
-                gap: 14px;
-            }
-
             header {
-                padding: 20px 14px 18px;
-                border-radius: 22px;
+                padding: 16px 14px 14px;
+                border-radius: 20px;
             }
 
             .header-title {
-                font-size: 1.7rem;
-            }
-
-            .header-sub {
-                font-size: 0.8rem;
-            }
-
-            .nav-btn {
-                padding: 12px 14px;
-                font-size: 0.85rem;
-                border-radius: 14px;
-            }
-
-            .sub-btn {
-                padding: 8px 12px;
-                font-size: 0.82rem;
-            }
-
-            .sub-menu {
-                padding-left: 12px;
-            }
-
-            footer {
-                padding: 18px 8px 12px;
-                font-size: 0.8rem;
+                font-size: 1.5rem;
             }
         }
 
-        @media (max-width: 360px) {
-            body {
-                padding: 8px 6px;
-            }
-
-            header {
-                padding: 16px 10px 14px;
-                border-radius: 18px;
-            }
-
-            .header-title {
-                font-size: 1.4rem;
-            }
-
-            .nav-btn {
-                padding: 10px 12px;
-                font-size: 0.8rem;
-                border-radius: 12px;
-            }
-
-            .sub-btn {
-                padding: 6px 10px;
-                font-size: 0.78rem;
-            }
+        .chapters-modal::-webkit-scrollbar {
+            width: 4px;
         }
 
-        /* ===== FULLSCREEN PDF OVERLAY ===== */
+        .chapters-modal::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .chapters-modal::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        /* ===== PDF OVERLAY ===== */
         .pdf-overlay {
             position: fixed;
             top: 0;
@@ -336,11 +455,6 @@
             display: flex;
         }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
         .pdf-overlay-content {
             width: 96%;
             max-width: 900px;
@@ -355,11 +469,6 @@
             position: relative;
             animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
             margin: auto;
-        }
-
-        @keyframes slideUp {
-            0% { transform: scale(0.92) translateY(30px); opacity: 0; }
-            100% { transform: scale(1) translateY(0); opacity: 1; }
         }
 
         .pdf-overlay-header {
@@ -401,7 +510,6 @@
             transform: scale(1.1);
         }
 
-        /* Mode toggle */
         .pdf-mode-toggle {
             display: flex;
             gap: 4px;
@@ -444,7 +552,6 @@
             justify-content: center;
         }
 
-        /* PDF Viewer */
         .pdf-viewer-wrapper {
             width: 100%;
             height: 100%;
@@ -459,7 +566,6 @@
             overflow: hidden;
         }
 
-        /* Scroll mode */
         .pdf-viewer-wrapper.scroll-mode {
             overflow-y: auto;
             overflow-x: hidden;
@@ -487,7 +593,6 @@
             flex-shrink: 0;
         }
 
-        /* Flip mode */
         .pdf-viewer-wrapper.flip-mode {
             overflow: hidden;
             justify-content: center;
@@ -584,241 +689,63 @@
             margin-top: 4px;
         }
 
-        /* ===== PDF OVERLAY RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .pdf-overlay {
-                padding: 16px 12px !important;
-            }
-
-            .pdf-overlay-content {
-                width: 100%;
-                height: 88vh !important;
-                max-height: none;
-                border-radius: 14px;
-            }
-
-            .pdf-overlay-header {
-                padding: 8px 10px;
-                min-height: 38px;
-            }
-
-            .pdf-overlay-header h3 {
-                font-size: 0.85rem;
-                max-width: 45%;
-            }
-
-            .pdf-overlay-close {
-                font-size: 20px;
-                padding: 0 2px;
-            }
-
-            .pdf-overlay-body {
-                background: #f1f3f5 !important;
-                padding: 4px !important;
-            }
-
-            .pdf-viewer-wrapper {
-                background: #f1f3f5 !important;
-                padding: 2px !important;
-                border-radius: 6px !important;
-            }
-
-            .pdf-viewer-wrapper.flip-mode .pdf-canvas-container canvas {
-                border-radius: 2px !important;
-            }
-
-            .pdf-controls {
-                display: flex !important;
-                gap: 8px;
-                padding: 6px 0 4px 0;
-            }
-
-            .pdf-controls button {
-                padding: 6px 12px;
-                font-size: 0.75rem;
-                min-width: 55px;
-            }
-
-            .pdf-controls .page-info {
-                font-size: 0.8rem;
-                min-width: 60px;
-            }
-
-            .pdf-mode-toggle button {
-                padding: 2px 8px;
-                font-size: 0.6rem;
-            }
-
-            .pdf-placeholder-text {
-                font-size: 0.85rem;
-                background: #fafafa !important;
-            }
-
-            .pdf-placeholder-text i {
-                font-size: 28px;
-            }
-
-            .pdf-viewer-wrapper.scroll-mode .pdf-page-container canvas {
-                border-radius: 2px !important;
-            }
+            .pdf-overlay { padding: 16px 12px !important; }
+            .pdf-overlay-content { width: 100%; height: 88vh !important; max-height: none; border-radius: 14px; }
+            .pdf-overlay-header { padding: 8px 10px; min-height: 38px; }
+            .pdf-overlay-header h3 { font-size: 0.85rem; max-width: 45%; }
+            .pdf-overlay-close { font-size: 20px; padding: 0 2px; }
+            .pdf-overlay-body { background: #f1f3f5 !important; padding: 4px !important; }
+            .pdf-viewer-wrapper { background: #f1f3f5 !important; padding: 2px !important; border-radius: 6px !important; }
+            .pdf-viewer-wrapper.flip-mode .pdf-canvas-container canvas { border-radius: 2px !important; }
+            .pdf-controls { display: flex !important; gap: 8px; padding: 6px 0 4px 0; }
+            .pdf-controls button { padding: 6px 12px; font-size: 0.75rem; min-width: 55px; }
+            .pdf-controls .page-info { font-size: 0.8rem; min-width: 60px; }
+            .pdf-mode-toggle button { padding: 2px 8px; font-size: 0.6rem; }
+            .pdf-placeholder-text { font-size: 0.85rem; background: #fafafa !important; }
+            .pdf-placeholder-text i { font-size: 28px; }
+            .pdf-viewer-wrapper.scroll-mode .pdf-page-container canvas { border-radius: 2px !important; }
         }
 
         @media (max-width: 480px) {
-            .pdf-overlay {
-                padding: 12px 8px !important;
-            }
-
-            .pdf-overlay-content {
-                height: 86vh !important;
-                border-radius: 12px;
-            }
-
-            .pdf-overlay-header {
-                padding: 6px 8px;
-                min-height: 34px;
-            }
-
-            .pdf-overlay-header h3 {
-                font-size: 0.75rem;
-                max-width: 40%;
-            }
-
-            .pdf-overlay-close {
-                font-size: 18px;
-            }
-
-            .pdf-overlay-body {
-                padding: 3px !important;
-            }
-
-            .pdf-viewer-wrapper {
-                padding: 1px !important;
-                border-radius: 4px !important;
-            }
-
-            .pdf-controls {
-                gap: 5px;
-                padding: 4px 0 3px 0;
-            }
-
-            .pdf-controls button {
-                padding: 5px 10px;
-                font-size: 0.7rem;
-                min-width: 48px;
-            }
-
-            .pdf-controls .page-info {
-                font-size: 0.75rem;
-                min-width: 50px;
-            }
-
-            .pdf-mode-toggle button {
-                padding: 1px 6px;
-                font-size: 0.55rem;
-            }
-
-            .pdf-placeholder-text {
-                font-size: 0.75rem;
-            }
-
-            .pdf-placeholder-text i {
-                font-size: 24px;
-                margin-bottom: 6px;
-            }
-
-            .pdf-placeholder-text .sub-text {
-                font-size: 0.7rem;
-            }
+            .pdf-overlay { padding: 12px 8px !important; }
+            .pdf-overlay-content { height: 86vh !important; border-radius: 12px; }
+            .pdf-overlay-header { padding: 6px 8px; min-height: 34px; }
+            .pdf-overlay-header h3 { font-size: 0.75rem; max-width: 40%; }
+            .pdf-overlay-close { font-size: 18px; }
+            .pdf-overlay-body { padding: 3px !important; }
+            .pdf-viewer-wrapper { padding: 1px !important; border-radius: 4px !important; }
+            .pdf-controls { gap: 5px; padding: 4px 0 3px 0; }
+            .pdf-controls button { padding: 5px 10px; font-size: 0.7rem; min-width: 48px; }
+            .pdf-controls .page-info { font-size: 0.75rem; min-width: 50px; }
+            .pdf-mode-toggle button { padding: 1px 6px; font-size: 0.55rem; }
+            .pdf-placeholder-text { font-size: 0.75rem; }
+            .pdf-placeholder-text i { font-size: 24px; margin-bottom: 6px; }
+            .pdf-placeholder-text .sub-text { font-size: 0.7rem; }
         }
 
         @media (max-width: 380px) {
-            .pdf-overlay {
-                padding: 8px 4px !important;
-            }
-
-            .pdf-overlay-content {
-                height: 84vh !important;
-                border-radius: 10px;
-            }
-
-            .pdf-overlay-header {
-                padding: 4px 6px;
-                min-height: 30px;
-            }
-
-            .pdf-overlay-header h3 {
-                font-size: 0.65rem;
-                max-width: 35%;
-            }
-
-            .pdf-overlay-close {
-                font-size: 16px;
-            }
-
-            .pdf-controls {
-                gap: 4px;
-                padding: 3px 0 2px 0;
-            }
-
-            .pdf-controls button {
-                padding: 4px 8px;
-                font-size: 0.6rem;
-                min-width: 40px;
-            }
-
-            .pdf-controls .page-info {
-                font-size: 0.65rem;
-                min-width: 40px;
-            }
-
-            .pdf-placeholder-text {
-                font-size: 0.7rem;
-            }
-
-            .pdf-placeholder-text i {
-                font-size: 20px;
-                margin-bottom: 4px;
-            }
+            .pdf-overlay { padding: 8px 4px !important; }
+            .pdf-overlay-content { height: 84vh !important; border-radius: 10px; }
+            .pdf-overlay-header { padding: 4px 6px; min-height: 30px; }
+            .pdf-overlay-header h3 { font-size: 0.65rem; max-width: 35%; }
+            .pdf-overlay-close { font-size: 16px; }
+            .pdf-controls { gap: 4px; padding: 3px 0 2px 0; }
+            .pdf-controls button { padding: 4px 8px; font-size: 0.6rem; min-width: 40px; }
+            .pdf-controls .page-info { font-size: 0.65rem; min-width: 40px; }
+            .pdf-placeholder-text { font-size: 0.7rem; }
+            .pdf-placeholder-text i { font-size: 20px; margin-bottom: 4px; }
         }
 
-        /* Landscape phone */
         @media (max-height: 500px) and (orientation: landscape) {
-            .pdf-overlay {
-                padding: 12px 16px !important;
-            }
-
-            .pdf-overlay-content {
-                height: 85vh !important;
-                max-height: 420px;
-                border-radius: 12px;
-            }
-
-            .pdf-overlay-header {
-                padding: 6px 10px;
-                min-height: 32px;
-            }
-
-            .pdf-overlay-header h3 {
-                font-size: 0.8rem;
-            }
-
-            .pdf-overlay-body {
-                padding: 3px !important;
-            }
-
-            .pdf-viewer-wrapper {
-                padding: 1px !important;
-            }
-
-            .pdf-controls {
-                padding: 4px 0 3px 0;
-            }
-
-            .pdf-controls button {
-                padding: 4px 10px;
-                font-size: 0.65rem;
-                min-width: 44px;
-            }
+            .pdf-overlay { padding: 12px 16px !important; }
+            .pdf-overlay-content { height: 85vh !important; max-height: 420px; border-radius: 12px; }
+            .pdf-overlay-header { padding: 6px 10px; min-height: 32px; }
+            .pdf-overlay-header h3 { font-size: 0.8rem; }
+            .pdf-overlay-body { padding: 3px !important; }
+            .pdf-viewer-wrapper { padding: 1px !important; }
+            .pdf-controls { padding: 4px 0 3px 0; }
+            .pdf-controls button { padding: 4px 10px; font-size: 0.65rem; min-width: 44px; }
         }
     </style>
 </head>
@@ -826,70 +753,69 @@
     <div class="page-wrapper">
         <!-- HEADER -->
         <header>
-            <div class="header-container">
-                <h1 class="header-title">Main Story</h1>
-                <p class="header-sub">Kafka's Universe</p>
-            </div>
+            <h1 class="header-title">Main Story</h1>
         </header>
 
-        <!-- NAVIGATION -->
-        <div class="sidebar">
-            <div class="navigation-buttons">
-                <!-- The Jackdaw -->
-                <div class="nav-btn" data-target="jackdaw">
-                    <span>The Jackdaw</span>
-                    <span class="arrow"><i class="fas fa-chevron-down"></i></span>
-                </div>
-                <div class="sub-menu" id="sub-jackdaw">
-                    <button class="sub-btn" data-title="The Jackdaw - Chapter 1" data-pdf="Jackdaw1.pdf" data-status="On Revision">Chapter 1</button>
-                    <button class="sub-btn" data-title="The Jackdaw - Chapter 2" data-pdf="Jackdaw2.pdf" data-status="On Revision">Chapter 2</button>
-                    <button class="sub-btn" data-title="The Jackdaw - Chapter 3" data-pdf="Jackdaw3.pdf" data-status="On Revision">Chapter 3</button>
-                    <button class="sub-btn" data-title="The Jackdaw - Chapter 4" data-pdf="Jackdaw4.pdf" data-status="On Revision">Chapter 4</button>
-                    <button class="sub-btn" data-title="The Jackdaw - Chapter 5" data-pdf="Jackdaw5.pdf" data-status="On Revision">Chapter 5</button>
-                </div>
+        <!-- INFO TEXT - GENRE, TW, MAIN CHARACTER -->
+        <div class="info-text">
+            <div class="label">Main Character</div>
+            <div class="content"><span class="main-char">Gathur Delano Kafka</span></div>
 
-                <!-- A Language of Threats -->
-                <div class="nav-btn" data-target="threats">
-                    <span>A Language of Threats</span>
-                    <span class="arrow"><i class="fas fa-chevron-down"></i></span>
-                </div>
-                <div class="sub-menu" id="sub-threats">
-                    <button class="sub-btn active" data-title="ALOT - Chapter 1" data-pdf="1ALOT.pdf" data-status="Ready">Chapter 1</button>
-                    <button class="sub-btn active" data-title="ALOT - Chapter 2" data-pdf="2ALOT.pdf" data-status="Ready">Chapter 2</button>
-                    <button class="sub-btn" data-title="ALOT - Chapter 3" data-pdf="3ALOT.pdf" data-status="On Progress">Chapter 3</button>
-                    <button class="sub-btn" data-title="ALOT - Chapter 4" data-pdf="4ALOT.pdf" data-status="On Progress">Chapter 4</button>
-                </div>
+            <div class="label">Genre</div>
+            <div class="content">Dark Thriller, Family Conflict, Political Conflict, Dark Politics, Dark Psychology, Time Loop</div>
 
-                <!-- On Going (4 items - no dropdown) -->
-                <div class="nav-btn ongoing">
-                    <span>On Going</span>
-                    <span style="font-size:0.7rem; color:#999;">—</span>
+            <div class="label">Trigger Warnings</div>
+            <div class="content">Violence, Shooting, Blood, Gun Violence, Manipulation, Mental Pressure, Trauma, Self-Harm, Harm to Others, Murder, Physical Torture, Mental Torture</div>
+        </div>
+
+        <!-- ===== 2 GRID COVER ===== -->
+        <div class="stories-grid">
+            <!-- The Jackdaw -->
+            <div class="story-card" data-story="jackdaw">
+                <div class="card-image">
+                    <img src="TheJackdaw.png" alt="The Jackdaw">
+                    <span class="card-badge chapters">5 Chapters</span>
                 </div>
-                <div class="nav-btn ongoing">
-                    <span>On Going</span>
-                    <span style="font-size:0.7rem; color:#999;">—</span>
+                <div class="card-overlay">
+                    <h3>01. The Jackdaw</h3>
+                    <p>Click to view chapters</p>
                 </div>
-                <div class="nav-btn ongoing">
-                    <span>On Going</span>
-                    <span style="font-size:0.7rem; color:#999;">—</span>
+            </div>
+
+            <!-- A Language of Threats -->
+            <div class="story-card" data-story="threats">
+                <div class="card-image">
+                    <img src="ALOT.png" alt="A Language of Threats">
+                    <span class="card-badge chapters">4 Chapters</span>
                 </div>
-                <div class="nav-btn ongoing">
-                    <span>On Going</span>
-                    <span style="font-size:0.7rem; color:#999;">—</span>
+                <div class="card-overlay">
+                    <h3>02. A Language of Threats</h3>
+                    <p>Click to view chapters</p>
                 </div>
             </div>
         </div>
 
-        <!-- CONTENT AREA (footer only) -->
-        <div class="content-area">
-            <footer>
-                <p>© 2026 Gathur Delano Kafka.</p>
-                <p>Written by Arde</p>
-            </footer>
+        <!-- ===== CHAPTERS MODAL ===== -->
+        <div class="chapters-overlay" id="chaptersOverlay">
+            <div class="chapters-modal">
+                <div class="modal-header">
+                    <h2 id="modalTitle">The Jackdaw</h2>
+                    <button class="modal-close" id="modalClose">&times;</button>
+                </div>
+                <div id="chapterList">
+                    <!-- Diisi oleh JS -->
+                </div>
+            </div>
         </div>
+
+        <!-- FOOTER -->
+        <footer style="text-align:center; padding: 20px 12px 8px; border-top:1px solid #e2e2e2; width:100%; color:#5a5a5a; font-size:0.85rem; margin-top:8px;">
+            <p>© 2026 Gathur Delano Kafka.</p>
+            <p style="font-size:0.75rem; color:#999; margin-top:4px;">Written by Arde</p>
+        </footer>
     </div>
 
-    <!-- ===== FULLSCREEN PDF OVERLAY ===== -->
+    <!-- ===== PDF OVERLAY ===== -->
     <div class="pdf-overlay" id="pdfOverlay">
         <div class="pdf-overlay-content">
             <div class="pdf-overlay-header">
@@ -902,13 +828,10 @@
             </div>
             <div class="pdf-overlay-body" id="pdfOverlayBody">
                 <div class="pdf-viewer-wrapper flip-mode" id="pdfViewerWrapper">
-                    <!-- Flip mode container -->
                     <div class="pdf-canvas-container" id="pdfCanvasContainer">
                         <canvas id="pdfCanvas"></canvas>
                     </div>
-                    <!-- Scroll mode container -->
                     <div class="pdf-page-container" id="pdfPageContainer" style="display:none; width:100%; max-width:600px; flex-direction:column; align-items:center; gap:8px; padding:4px 0;"></div>
-                    
                     <div class="pdf-controls" id="pdfControls" style="display:none;">
                         <button id="prevPageBtn"><i class="fas fa-chevron-left"></i> Prev</button>
                         <span class="page-info" id="pageInfo">Page 1 / 1</span>
@@ -925,30 +848,45 @@
 
     <script>
         (function() {
-            // ===== DROPDOWN TOGGLES =====
-            const navBtns = document.querySelectorAll('.nav-btn:not(.ongoing)');
-            const subMenus = {
-                jackdaw: document.getElementById('sub-jackdaw'),
-                threats: document.getElementById('sub-threats')
+            // ===== DATA CHAPTERS =====
+            const storyData = {
+                jackdaw: {
+                    title: 'The Jackdaw',
+                    chapters: [
+                        { title: 'Chapter 1', pdf: 'Jackdaw1.pdf', status: 'On Revision' },
+                        { title: 'Chapter 2', pdf: 'Jackdaw2.pdf', status: 'On Revision' },
+                        { title: 'Chapter 3', pdf: 'Jackdaw3.pdf', status: 'On Revision' },
+                        { title: 'Chapter 4', pdf: 'Jackdaw4.pdf', status: 'On Revision' },
+                        { title: 'Chapter 5', pdf: 'Jackdaw5.pdf', status: 'On Revision' }
+                    ]
+                },
+                threats: {
+                    title: 'A Language of Threats',
+                    chapters: [
+                        { title: 'Chapter 1', pdf: '1ALOT.pdf', status: 'Ready' },
+                        { title: 'Chapter 2', pdf: '2ALOT.pdf', status: 'Ready' },
+                        { title: 'Chapter 3', pdf: '3ALOT.pdf', status: 'On Progress' },
+                        { title: 'Chapter 4', pdf: '4ALOT.pdf', status: 'On Progress' }
+                    ]
+                }
             };
 
-            subMenus.jackdaw.classList.remove('open');
-            subMenus.threats.classList.remove('open');
-            document.querySelectorAll('.nav-btn:not(.ongoing)').forEach(btn => btn.classList.remove('open'));
+            // Status mapping for styling
+            const statusMap = {
+                'Ready': 'ready',
+                'On Revision': 'revision',
+                'On Progress': 'progress',
+                'Coming Soon': 'coming'
+            };
 
-            navBtns.forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const target = this.getAttribute('data-target');
-                    const sub = subMenus[target];
-                    if (sub) {
-                        sub.classList.toggle('open');
-                        this.classList.toggle('open');
-                    }
-                });
-            });
+            // ===== ELEMENTS =====
+            const storyCards = document.querySelectorAll('.story-card');
+            const chaptersOverlay = document.getElementById('chaptersOverlay');
+            const modalClose = document.getElementById('modalClose');
+            const modalTitle = document.getElementById('modalTitle');
+            const chapterList = document.getElementById('chapterList');
 
-            // ===== PDF VIEWER =====
+            // PDF elements
             const overlay = document.getElementById('pdfOverlay');
             const overlayTitle = document.getElementById('pdfOverlayTitle');
             const overlayClose = document.getElementById('pdfOverlayClose');
@@ -965,47 +903,77 @@
             const flipModeBtn = document.getElementById('flipModeBtn');
             const scrollModeBtn = document.getElementById('scrollModeBtn');
 
+            // ===== PDF VIEWER STATE =====
             let pdfDoc = null;
             let pageNum = 1;
             let pageRendering = false;
             let pageNumPending = null;
             let scale = 1.2;
-            let currentPdfUrl = null;
             let isFlipMode = true;
             let isRenderingAllPages = false;
 
-            // Set PDF.js worker
             pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-            // Mode toggle
-            flipModeBtn.addEventListener('click', function() {
-                if (isFlipMode) return;
-                isFlipMode = true;
-                flipModeBtn.classList.add('active');
-                scrollModeBtn.classList.remove('active');
-                wrapper.classList.remove('scroll-mode');
-                wrapper.classList.add('flip-mode');
-                canvasContainer.style.display = 'flex';
-                pageContainer.style.display = 'none';
-                controls.style.display = 'flex';
-                if (pdfDoc) renderPage(pageNum);
+            // ===== OPEN CHAPTERS MODAL =====
+            function openChapters(storyKey) {
+                const data = storyData[storyKey];
+                if (!data) return;
+
+                modalTitle.textContent = data.title;
+                chapterList.innerHTML = '';
+
+                data.chapters.forEach((ch, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'chapter-item';
+
+                    const titleSpan = document.createElement('span');
+                    titleSpan.className = 'chapter-title';
+                    titleSpan.textContent = ch.title;
+
+                    const statusSpan = document.createElement('span');
+                    statusSpan.className = 'chapter-status ' + (statusMap[ch.status] || 'coming');
+                    statusSpan.textContent = ch.status || 'Coming Soon';
+
+                    item.appendChild(titleSpan);
+                    item.appendChild(statusSpan);
+
+                    // Click to open PDF
+                    item.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        // Close modal
+                        chaptersOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                        // Open PDF
+                        openPdf(data.title + ' - ' + ch.title, ch.pdf, ch.status);
+                    });
+
+                    chapterList.appendChild(item);
+                });
+
+                chaptersOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeChapters() {
+                chaptersOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // ===== STORY CARD CLICK =====
+            storyCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const story = this.getAttribute('data-story');
+                    if (story) openChapters(story);
+                });
             });
 
-            scrollModeBtn.addEventListener('click', function() {
-                if (!isFlipMode) return;
-                isFlipMode = false;
-                scrollModeBtn.classList.add('active');
-                flipModeBtn.classList.remove('active');
-                wrapper.classList.remove('flip-mode');
-                wrapper.classList.add('scroll-mode');
-                canvasContainer.style.display = 'none';
-                pageContainer.style.display = 'flex';
-                controls.style.display = 'none';
-                if (pdfDoc && !isRenderingAllPages) {
-                    renderAllPagesScroll();
-                }
+            // Close modal
+            modalClose.addEventListener('click', closeChapters);
+            chaptersOverlay.addEventListener('click', function(e) {
+                if (e.target === this) closeChapters();
             });
 
+            // ===== PDF VIEWER FUNCTIONS =====
             function renderPage(num) {
                 if (!pdfDoc) return;
                 pageRendering = true;
@@ -1080,10 +1048,8 @@
 
             function loadPDF(url, title) {
                 overlayTitle.textContent = title || 'Loading...';
-                currentPdfUrl = url;
                 isRenderingAllPages = false;
 
-                // Reset
                 canvas.style.display = 'none';
                 controls.style.display = 'none';
                 placeholder.style.display = 'flex';
@@ -1120,7 +1086,7 @@
                     console.error('Error loading PDF:', error);
                     placeholder.style.display = 'flex';
                     placeholder.innerHTML = `
-                        <i class="fas fa-exclamation-triangle" style="font-size: 32px; color: #e74c3c; margin-bottom: 8px;"></i>
+                        <i class="fas fa-exclamation-triangle" style="font-size: 32px; color: #666; margin-bottom: 8px;"></i>
                         <span>Error loading PDF. Make sure the file exists.</span>
                     `;
                     canvas.style.display = 'none';
@@ -1134,7 +1100,7 @@
                     overlayTitle.textContent = title || 'Coming Soon';
                     placeholder.style.display = 'flex';
                     placeholder.innerHTML = `
-                        <i class="fas fa-clock" style="font-size: 32px; color: #e67e22; margin-bottom: 8px;"></i>
+                        <i class="fas fa-clock" style="font-size: 32px; color: #666; margin-bottom: 8px;"></i>
                         <span class="status-text">${status}</span>
                         <span class="sub-text">${title}</span>
                     `;
@@ -1181,22 +1147,21 @@
                 pageContainer.innerHTML = '';
                 pageContainer.style.display = 'none';
                 canvasContainer.style.display = 'flex';
-                currentPdfUrl = null;
                 isRenderingAllPages = false;
             }
 
-            // Event listeners
+            // ===== PDF EVENT LISTENERS =====
             overlayClose.addEventListener('click', closePdf);
-
             overlay.addEventListener('click', function(e) {
-                if (e.target === overlay) {
-                    closePdf();
-                }
+                if (e.target === overlay) closePdf();
             });
 
             window.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && overlay.classList.contains('active')) {
                     closePdf();
+                }
+                if (e.key === 'Escape' && chaptersOverlay.classList.contains('active')) {
+                    closeChapters();
                 }
                 if (e.key === 'ArrowLeft' && overlay.classList.contains('active') && isFlipMode) {
                     if (pageNum > 1) {
@@ -1224,32 +1189,35 @@
                 queueRenderPage(pageNum);
             });
 
-            // ===== SUB BUTTON CLICK =====
-            const subBtns = document.querySelectorAll('.sub-btn');
-
-            subBtns.forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const title = this.getAttribute('data-title') || 'Chapter';
-                    const pdf = this.getAttribute('data-pdf') || null;
-                    const status = this.getAttribute('data-status') || null;
-
-                    openPdf(title, pdf, status);
-
-                    subBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-
-                    // Close dropdown after selecting
-                    const parentSub = this.closest('.sub-menu');
-                    if (parentSub) {
-                        parentSub.classList.remove('open');
-                        const parentBtn = parentSub.previousElementSibling;
-                        if (parentBtn && parentBtn.classList.contains('nav-btn')) {
-                            parentBtn.classList.remove('open');
-                        }
-                    }
-                });
+            // Mode toggle
+            flipModeBtn.addEventListener('click', function() {
+                if (isFlipMode) return;
+                isFlipMode = true;
+                flipModeBtn.classList.add('active');
+                scrollModeBtn.classList.remove('active');
+                wrapper.classList.remove('scroll-mode');
+                wrapper.classList.add('flip-mode');
+                canvasContainer.style.display = 'flex';
+                pageContainer.style.display = 'none';
+                controls.style.display = 'flex';
+                if (pdfDoc) renderPage(pageNum);
             });
+
+            scrollModeBtn.addEventListener('click', function() {
+                if (!isFlipMode) return;
+                isFlipMode = false;
+                scrollModeBtn.classList.add('active');
+                flipModeBtn.classList.remove('active');
+                wrapper.classList.remove('flip-mode');
+                wrapper.classList.add('scroll-mode');
+                canvasContainer.style.display = 'none';
+                pageContainer.style.display = 'flex';
+                controls.style.display = 'none';
+                if (pdfDoc && !isRenderingAllPages) {
+                    renderAllPagesScroll();
+                }
+            });
+
         })();
     </script>
 </body>
